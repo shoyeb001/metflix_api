@@ -1,4 +1,5 @@
 import MovieSchema from "../../model/MovieModel";
+import GenreSchema from "../../model/GenreModel";
 import multer from "multer";
 import fs from "fs";
 import path from "path";
@@ -125,8 +126,12 @@ const MovieController = {
     async MovieByGenreName(req,res,next){
         const name = req.params.name;
         try {
-            const movie = await MovieSchema.find({name:name});
-            return res.status(200).json(movie);
+            const genre = await GenreSchema.find({name:name});
+            // console.log(genre[0]._id);
+            const genre_id = genre[0]._id;
+            // console.log(genre_id);
+            const movies = await MovieSchema.find({genre:genre_id});
+            return res.status(200).json(movies);
         } catch (error) {
             next(error);
         }
