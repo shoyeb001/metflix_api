@@ -43,6 +43,15 @@ const MovieController = {
         }
     },
 
+    async ViewLatestMovies(req,res,next){
+        try {
+            const movie = await MovieSchema.find().limit(10);
+            return res.status(200).json(movie);
+        } catch (error) {
+            next(error);
+        }
+    },
+
     async UpdateMovie(req,res,next){
         const {title,description,channel,genre,language,poster,thumbnail,movie,duration,age} = req.body;
         const id = req.params.id;
@@ -82,7 +91,7 @@ const MovieController = {
     },
 
     async MovieDetails(req,res,next){
-        const id = req.body.id;
+        const id = req.params.m_id;
         try {
             const movie = await MovieSchema.find({_id:id});
             return res.status(200).json(movie);

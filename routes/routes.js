@@ -41,13 +41,14 @@ routes.delete("/channel/delete/:id",verifyadmin, ChannelController.DeleteChannel
 
 routes.post("/movie/add/:id",verifyadmin, MovieController.AddMovie);
 routes.get("/movie/view/:id",verifyuser, MovieController.ViewMovie);
+routes.get("/movies/view/latest/:id",verifyuser,MovieController.ViewLatestMovies);
 routes.put("/movie/update/:id",verifyadmin, MovieController.UpdateMovie);
 routes.delete("/movie/delete/:id",verifyadmin, MovieController.DeleteMovie);
 routes.get("/movie/channel/:id",verifyuser, MovieController.MovieByChannel);
 routes.get("/movie/genre/:id",verifyuser, MovieController.MovieByGenre);
 routes.get("/movie/genre/:id/:name",verifyuser,MovieController.MovieByGenreName);
 routes.get("/movie/language/:id",verifyuser, MovieController.MovieByLanguage);
-routes.get("/movie/details/:id",verifyuser, MovieController.MovieDetails);
+routes.get("/movie/details/:id/:m_id",verifyuser, MovieController.MovieDetails);
 routes.get("/movie/total/:id", verifyadmin, MovieController.TotalMovie);
 
 //user controller
