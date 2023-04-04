@@ -1,7 +1,7 @@
 import express from "express";
 const routes = express.Router();
 
-import {LanguageController,GenreController,ChannelController, MovieController, UserController} from "../controller/index";
+import {LanguageController,GenreController,ChannelController, MovieController, UserController, WatchlistController} from "../controller/index";
 // import heathCheckController from "../controller/Healthcheck";
 import { verifyadmin, verifyfunction, verifyuser } from "../middleware/verifyToken";
 
@@ -63,7 +63,11 @@ routes.get("/user/role/:id",UserController.GetUserRole);
 routes.get("/user/total/:id",verifyadmin, UserController.TotalUser);
 routes.get("/user/latest/:id",verifyadmin, UserController.LatestUser);
 
+//watchlist controller
 
+routes.post("/watchlist/add/:id",verifyuser, WatchlistController.AddWatchlist);
+routes.get("/watchlist/view/:id",verifyuser, WatchlistController.ViewWatchlist);
+routes.delete("/watchlist/delete/:id/:movie_id",verifyuser, WatchlistController.DeleteWatchlist);
 
 
 export default routes;

@@ -119,7 +119,7 @@ const GenreController = {
         const id = req.params.g_id;
         try {
             const genre = await GenreSchema.findById({_id:id});
-            console.log(genre);
+            // console.log(genre);
             return res.status(200).json(genre);
         } catch (error) {
            next(error);
