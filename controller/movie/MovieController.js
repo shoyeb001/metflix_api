@@ -101,7 +101,7 @@ const MovieController = {
     },
 
     async MovieByGenre(req,res,next){
-        const genre = req.params.id;
+        const genre = req.params.g_id;
         try{
             const movie = await MovieSchema.find({genre:genre});
             return res.status(200).json(movie);
@@ -111,7 +111,7 @@ const MovieController = {
     },
 
     async MovieByLanguage(req,res,next){
-        const lan = req.params.id;
+        const lan = req.params.l_id;
 
         try {
             const movie = await MovieSchema.find({language:lan});
@@ -122,10 +122,10 @@ const MovieController = {
     },
 
     async MovieByChannel(req,res,next){
-        const ch = req.params.id;
+        const ch = req.params.c_id;
 
         try {
-            const movie = await MovieSchema.find({language:lan});
+            const movie = await MovieSchema.find({channel:ch});
             return res.status(200).json(movie);
         } catch (error) {
             next(error);
@@ -151,6 +151,16 @@ const MovieController = {
             const num = await MovieSchema.find().countDocuments();
             // console.log(num);
             return res.status(200).json(num);
+        } catch (error) {
+            next(error);
+        }
+    },
+
+    async SearchMovie(req,res,next){
+        const post = new RegExp(req.params.name,'i');
+        try {
+            const movies = await MovieSchema.find({title:post});
+            return res.status(200).json(movies);
         } catch (error) {
             next(error);
         }
