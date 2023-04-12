@@ -8,7 +8,7 @@ const UserSchema = new mongoose.Schema({
     language:{type:String},
     type:{type:String},
     status:{type:Boolean},
-    valid:{type:Date}
+    valid:{type:Number}
 },{timestamps:true});
 
 export default mongoose.model("User",UserSchema);

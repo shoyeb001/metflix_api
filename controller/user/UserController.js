@@ -42,8 +42,9 @@ const UserController = {
             }
 
             if(isExit.type!="admin"){
-                const date =  new Date(Date.now()).toLocaleString().split(',')[0];
-
+                // const date =  new Date(Date.now()).toLocaleString().split(',')[0];
+                const date=Date.now()
+                console.log(date)
                 if(isExit.valid<date){
                     return res.status(401).json({msg:"Your Subscription Expried. Renew it now"});
                 }
